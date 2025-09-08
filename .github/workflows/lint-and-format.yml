@@ -1,0 +1,23 @@
+name: Linting and Formatting
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint-and-format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Run ESLint
+        run: echo "npx eslint ."
+      - name: Run Prettier
+        run: echo "npx prettier --check ."
+      - name: Check spelling
+        run: echo "Running spell check"

@@ -1,0 +1,15 @@
+name: Basic CI 7
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  release-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build release
+        run: echo "Building release artifacts"
+      - name: Upload artifacts
+        run: echo "Uploading release artifacts"

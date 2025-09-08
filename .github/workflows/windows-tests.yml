@@ -1,0 +1,19 @@
+name: Windows Specific Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  windows-tests:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Windows-specific tests
+        run: echo "Running Windows-specific tests"
+        shell: pwsh
+      - name: Check Windows features
+        run: echo "Checking Windows-specific features"
+        shell: cmd

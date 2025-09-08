@@ -1,0 +1,26 @@
+name: Manual Backup
+
+on:
+  workflow_dispatch:
+    inputs:
+      backup_type:
+        description: 'Type of backup to create'
+        required: true
+        default: 'full'
+        type: choice
+        options:
+          - full
+          - incremental
+          - differential
+      retention_days:
+        description: 'Number of days to retain backup'
+        required: false
+        default: '30'
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create ${{ github.event.inputs.backup_type }} backup
+        run: echo "Creating ${{ github.event.inputs.backup_type }} backup with ${{ github.event.inputs.retention_days }} days retention"

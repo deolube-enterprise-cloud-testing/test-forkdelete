@@ -1,0 +1,17 @@
+name: Hourly Status Check
+
+on:
+  schedule:
+    - cron: '0 * * * *'  # Every hour
+  workflow_dispatch:
+
+jobs:
+  status-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check system status
+        run: echo "Checking system status"
+      - name: Ping services
+        run: echo "Pinging external services"
+      - name: Update status page
+        run: echo "Updating status page"

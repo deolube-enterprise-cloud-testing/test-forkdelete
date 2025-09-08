@@ -1,0 +1,14 @@
+name: Basic CI 9
+
+on:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Triage issue
+        run: echo "Triaging new issue"
+      - name: Add labels
+        run: echo "Adding appropriate labels"

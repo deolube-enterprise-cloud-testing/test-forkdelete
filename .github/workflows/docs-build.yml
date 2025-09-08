@@ -1,0 +1,28 @@
+name: Documentation Build
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'docs/**'
+      - '**.md'
+  pull_request:
+    paths:
+      - 'docs/**'
+      - '**.md'
+
+jobs:
+  docs-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Install docs dependencies
+        run: echo "pip install -r docs/requirements.txt"
+      - name: Build documentation
+        run: echo "sphinx-build -b html docs/ docs/_build/"
+      - name: Deploy documentation
+        run: echo "Deploying documentation"

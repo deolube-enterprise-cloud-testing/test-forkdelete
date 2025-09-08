@@ -1,0 +1,25 @@
+name: Manual Cache Clear
+
+on:
+  workflow_dispatch:
+    inputs:
+      cache_type:
+        description: 'Type of cache to clear'
+        required: true
+        type: choice
+        options:
+          - application
+          - cdn
+          - database
+          - all
+      confirm:
+        description: 'Confirm cache clear operation'
+        required: true
+        type: boolean
+
+jobs:
+  clear-cache:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clear ${{ github.event.inputs.cache_type }} cache
+        run: echo "Clearing ${{ github.event.inputs.cache_type }} cache (confirmed: ${{ github.event.inputs.confirm }})"

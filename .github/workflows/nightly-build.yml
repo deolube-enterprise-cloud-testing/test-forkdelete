@@ -1,0 +1,18 @@
+name: Nightly Build
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Daily at midnight UTC
+  workflow_dispatch:
+
+jobs:
+  nightly-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run nightly build
+        run: echo "Running nightly build"
+      - name: Run extended tests
+        run: echo "Running extended test suite"
+      - name: Generate artifacts
+        run: echo "Generating nightly build artifacts"

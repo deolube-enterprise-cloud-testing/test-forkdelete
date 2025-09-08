@@ -1,0 +1,20 @@
+name: Ubuntu Matrix Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  ubuntu-tests:
+    strategy:
+      matrix:
+        ubuntu-version: [ubuntu-20.04, ubuntu-22.04, ubuntu-latest]
+    runs-on: ${{ matrix.ubuntu-version }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test on ${{ matrix.ubuntu-version }}
+        run: echo "Testing on ${{ matrix.ubuntu-version }}"
+      - name: Check Ubuntu version
+        run: lsb_release -a

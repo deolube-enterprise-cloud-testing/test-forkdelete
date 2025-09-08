@@ -1,0 +1,15 @@
+name: Basic CI 2
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build project
+        run: echo "Building project"
+      - name: Run linting
+        run: echo "Running linter"

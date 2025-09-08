@@ -1,0 +1,20 @@
+name: Cross Platform Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build on ${{ matrix.os }}
+        run: echo "Building on ${{ matrix.os }}"
+      - name: Test on ${{ matrix.os }}
+        run: echo "Testing on ${{ matrix.os }}"

@@ -1,0 +1,19 @@
+name: Notification Workflow
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - name: Notify on failure
+        run: echo "Sending notification for failed workflow"
+      - name: Send Slack notification
+        run: echo "Sending Slack notification"
+      - name: Send email notification
+        run: echo "Sending email notification"

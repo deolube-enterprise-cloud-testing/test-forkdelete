@@ -1,0 +1,26 @@
+name: Manual Database Migration
+
+on:
+  workflow_dispatch:
+    inputs:
+      migration_type:
+        description: 'Type of migration'
+        required: true
+        type: choice
+        options:
+          - up
+          - down
+          - reset
+      dry_run:
+        description: 'Dry run mode'
+        required: false
+        type: boolean
+        default: true
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run migration
+        run: echo "Running ${{ github.event.inputs.migration_type }} migration (dry run: ${{ github.event.inputs.dry_run }})"
